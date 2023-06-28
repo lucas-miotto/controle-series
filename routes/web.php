@@ -15,10 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/series');
 });
 
+//forma 01 - agrupando as rotas com base no controller.
+// Route::controller(SeriesController::class)->group(function() {
+//     Route::get('/series', 'index')->name('series.index');
+//     Route::get('/series/create', 'create')->name('series.create');
+//     Route::post('/series/salvar', 'store')->name('series.store');
+// });
 
-Route::get('/series', [SeriesController::class, 'index']);
-Route::get('/series/criar', [SeriesController::class, 'create']);
-Route::post('/series/salvar', [SeriesController::class, 'store']);
+//forma 02 - automatica seguindo o padrão do laravel.
+Route::resource('/series', SeriesController::class)->only(['index','create', 'store', 'destroy']);
