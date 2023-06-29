@@ -26,4 +26,4 @@ Route::get('/', function () {
 // });
 
 //forma 02 - automatica seguindo o padrão do laravel.
-Route::resource('/series', SeriesController::class)->only(['index','create', 'store', 'destroy']);
+Route::resource('/series', SeriesController::class)->except(['show']);
